@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #88ffa7;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="Capa_1">
+      <g>
+        <ellipse class="cls-1" cx="400" cy="159.5" rx="158.2" ry="159.5"/>
+        <path class="cls-1" d="M469.9,396.6h-139.9c-92.6,0-167.6,75.7-167.6,169.1v234.3h475.2v-234.3c0-93.4-75.1-169.1-167.6-169.1Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

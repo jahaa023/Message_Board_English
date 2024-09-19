@@ -1,0 +1,1002 @@
+body{
+    margin: 0;
+    overflow-y: hidden;
+}
+
+/*A tag in the upper right corner on login page*/
+.admin_link{ 
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-top: 20px;
+    color: black;
+    text-decoration: none;
+}
+
+/*A tag in the upper right corner on login page, on hover*/
+.admin_link:hover{
+    text-decoration: underline;
+}
+
+/*White box in middle of screen with log in form*/
+.login_container{
+    width: 500px;
+    height: 445px;
+    border: solid black 2px;
+    border-radius: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/*Container that holds logo over the log in form*/
+.login_logo_container{
+    width: 100%;
+    height: 150px;
+    position: relative;
+}
+
+/*The logo on the login page*/
+.login_logo_container img{
+    width: 175px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/*Text that reads "log in" over login form*/
+.login_container h1{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+}
+
+/*Inputs for password and username*/
+.login_cred{
+    width: 250px;
+    height: 22px;
+    border: solid 1px rgb(96, 96, 96);
+    margin-bottom: 15px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    border-radius: 3px;
+}
+
+/*Link that redirects you to register.php*/
+.register_link{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    font-size: 15px;
+    color: #909090;
+    text-decoration: none;
+}
+
+/*Link that redirects you to register.php, on hover*/
+.register_link:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+/*Checkbox to show or hide password*/
+.showpassword_label{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+}
+
+/*Button where it says log in*/
+.login_button{
+    width: 120px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background-color: #7ED0FF;
+    color: white;
+    cursor: pointer;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    margin-top: 15px;
+}
+
+/*Button where it says log in, on hover*/
+.login_button:hover{
+    background-color: #2483ba;
+}
+
+/*warning on login screen*/
+.login_warning{
+    display: none;
+    width: 250px;
+    height: 60px;
+    border: solid 1px rgb(96, 96, 96);
+    background-color: rgba(255, 0, 0, 0.458);
+    margin-bottom: 15px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60px; 
+}
+
+/*Div on left side of screen with dropdown menu*/
+.sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 150px;
+    height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 2;
+    background-color: white;
+}
+
+/*Container that contains dropdown menu*/
+.dropdown_container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+/*dropdown menu button*/
+.dropbtn {
+    background-image: url(img/dropdown.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/*Dropdown menu container*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/*Dropdown menu*/
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+}
+
+/*Links inside dropdown menu*/
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/*Links inside dropdown menu, on hover*/
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/*shows dropdown menu on hover*/
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*Changes color of dropdown button on hover*/
+.dropdown:hover .dropbtn {
+    background-color: #616161bb;
+}
+
+/*Container that contains username and profile picture in the sidebar*/
+.profile{
+    width: 140px;
+    height: fit-content;
+    align-items: center;
+    text-align: center;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    position: absolute;
+    bottom: 0;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/*Container that contains profile image in sidebar*/
+.sidebar_profile_image_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/*Profile image in sidebar*/
+.profile_image_sidebar{
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Div where you type in messages*/
+.message_bar{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.745) 4px 6px 12px;
+    z-index: 1;
+}
+
+/*Formen that contains inputs for sending messages*/
+.message_form{
+    margin-left: 170px;
+    height: 100px;
+    background-color: white;
+    vertical-align: middle;
+    line-height: 100px; 
+    position: relative;
+}
+
+/*Input where you type message*/
+#writeArea{
+    height: 50px;
+    width: 50%;
+    border-radius: 50px;
+    border: solid black 1px;
+    text-indent: 20px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    font-size: 30px;
+}
+
+/*Button for sending message*/
+#sendButton{
+    margin-left: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: #7ED0FF;
+    border: none;
+    cursor: pointer;
+    background-image: url(img/send.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+
+/*Button for sending message, on hover*/
+#sendButton:hover{
+    background-color: #2483ba;
+}
+
+/*Div with input for sending images*/
+.imageMenu{
+    display: none;
+    width: 250px;
+    height: 200px;
+    border: solid 1px black;
+    border-radius: 15px;
+    position: absolute;
+    bottom: 120px;
+    background-color: white;
+    text-align: center;
+    line-height: 0px; 
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+}
+
+/*the input for sending images*/
+#imageInput{
+    position: relative;
+    top: 15px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    text-align: left;
+    width: 180px;
+}
+
+/*Container that contains a preview of what image youre submitting*/
+.preview_img_container{
+    width: 150px;
+    height: 100px;
+    border: solid 1px black;
+    position: relative;
+    top: 30px;
+    margin-left: 50px;
+}
+
+/*the image in the preview*/
+#preview_img{
+    object-fit: contain;
+    max-width: 150px;
+    max-height: 100px;
+}
+
+/*button to show image menu*/
+#addImageButton{
+    margin-left: 10px;
+    height: 50px;
+    width: 50px;
+    position: relative;
+    bottom: 5px;
+    border-radius: 50px;
+    background-color: #7ED0FF;
+    border: none;
+    cursor: pointer;
+    background-image: url(img/plus.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    top: 20px;
+}
+
+/*button to show image menu, on hover*/
+#addImageButton:hover{
+    background-color: #2483ba;
+}
+
+/*Container that contains area where messages appear*/
+.message_area_container{
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/*area where messages appear*/
+.message_area{
+    width: 100%;
+    margin-left: 150px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+/*A div to push the last message up to create gap*/
+.message_bottom{
+    width: 100%;
+    height: 100px;
+}
+
+/*A div to push the first message down to create gap*/
+.message_top{
+    width: 100%;
+    height: 20px;
+}
+
+/*the message itself*/
+.message{
+    margin-left: 20px;
+    height: fit-content;
+    width: fit-content;
+    max-width: 70%;
+    max-height: 500px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid 1px black;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    overflow-wrap: break-word;
+}
+
+/*Username in message*/
+#message_username{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+/*Content of message*/
+#message_content{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    font-size: 16px;
+}
+
+/*Image inside message with images*/
+#message_image{
+    object-fit: contain;
+    max-width: 500px;
+    max-height: 300px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+/*profile picture in message*/
+#message_profile_image{
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Container that contains username and profile picture in message*/
+#message_username_container{
+    position: relative;
+    top: 10px;
+    display: flex;
+}
+
+/*container that centers warning*/
+.messages_warning_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    margin-top: 20px;
+}
+
+/*Warning that pops up if something went wrong with sending messages*/
+.messages_warning{
+    width: 80%;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.662);
+    border-radius: 30px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    color: white;
+    z-index: 999;
+    text-align: center;
+    line-height: 2px;
+    display: none;
+}
+
+/*Message Board logo in the upper right corner*/
+.corner_logo{
+    width: 70px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 20px;
+    margin-top: 20px;
+    z-index: 0;
+}
+
+/*Container that contains user settings*/
+.settings_container{
+    width: 1000px;
+    height: 600px;
+    border-radius: 30px;
+    border: solid black 1px;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*Adds margins to side of user settings*/
+.settings_inner_container{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+}
+
+/*h1 tags in user settings*/
+.settings_inner_container h1{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+}
+
+/*done button on user settings*/
+.settings_done{
+    width: 130px;
+    height: 50px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    border: solid 1px black;
+    cursor: pointer;
+    top: 185px;
+    position: absolute;
+    margin-top: 345px;
+}
+
+/*Container that contains username and profile picture of logged in user*/
+.settings_profile_container{
+    display: flex;
+}
+
+/*p tag in settings profile container*/
+.settings_profile_container p{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    font-size: 35px;
+    margin-left: 20px;
+}
+
+/*profile picture of logged in user on user settings*/
+.settings_profile_picture{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*container that centers logo on user settings*/
+.settings_logo_container{
+    width: 100%;
+    height: 70px;
+}
+
+/*the logo in user settings*/
+.settings_logo_container img{
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    position: relative;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*Button to change profile picture in user settings*/
+#settings_change_profilepicture{
+    width: 130px;
+    height: 50px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    border: solid 1px black;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 20px;
+    position: relative;
+    top: 7px;
+}
+
+/*Button to change username in user settings*/
+#settings_change_username{
+    width: 130px;
+    height: 50px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    border: solid 1px black;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+/*Button to change username color in user settings*/
+#settings_change_color{
+    width: 130px;
+    height: 50px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    border: solid 1px black;
+    cursor: pointer;
+    position: relative;
+    top: 7.5px;
+    margin-right: 20px;
+}
+
+/*Container that contains input to change username color*/
+#changeColorMenu{
+    position: relative;
+    top: 20px;
+    display: none;
+}
+
+/*Container that contains input to change username*/
+#changeUsernameMenu {
+    position: absolute;
+    left: 175px;
+    margin-top: 90px;
+}
+
+/*Container that contains input to upload image on user settings*/
+#imageMenuSettings{
+    height: 240px;
+    z-index: 999;
+}
+
+/*Save button when you submit image on user settings*/
+#profileImageSettingsSubmit{
+    position: relative;
+    top: 37px;
+}
+
+/*Warning that pops up if something goes wrong on user settings*/
+.settings_warning{
+    display: none;
+    width: 330px;
+    height: 100px;
+    border: solid 1px rgb(77, 77, 77);
+    background-color: rgba(255, 89, 89, 0.353);
+    text-align: center;
+    line-height: 40px;
+    margin-top: 20px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    font-size: 14px;
+}
+
+/*Timestamp on messages*/
+#message_timestamp{
+    color: rgb(94, 94, 94);
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    font-size: 12px;
+    margin-left: 5px;
+    position: relative;
+    top: 2px;
+}
+
+/*Button to delete message*/
+#deleteMessageButton{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-image: url(img/trashcan.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    border: black 1px solid;
+    border-radius: 10px;
+    background-color: white;
+}
+
+/*Button to delete message, on hover*/
+#deleteMessageButton:hover{
+    background-color: rgb(255, 113, 113);
+}
+
+/*Button for loading in more messages*/
+#loadInMoreButton{
+    background-color: #7ED0FF;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    cursor: pointer;
+    margin-left: 20px;
+    color: white;
+    width: 200px;
+    height: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: none;
+}
+
+/*Button for loading in more messages, on hover*/
+#loadInMoreButton:hover{
+    background-color: #2483ba;
+}
+
+/*button to edit message*/
+#editMessageButton{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-image: url(img/pencil.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    border: black 1px solid;
+    border-radius: 10px;
+    background-color: white;
+    margin-left: 10px;
+}
+
+/*button to edit message, on hover*/
+#editMessageButton:hover{
+    background-color: #7ED0FF;
+}
+
+/*Blurry background that appears when editing message*/
+.blurry_container{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    display: none;
+}
+
+/*Text where it says "edit message" in blurry container*/
+.edit_message_h1{
+    margin-left: 20px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+}
+
+/*Container that contains message that is getting edited*/
+.edit_message_container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*Message that is getting edited*/
+#editMessage{
+    min-width: 300px;
+}
+
+/*Input where you type in the new edited message*/
+#edit_message_input{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    font-size: 13px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/*Button to submit changes of message*/
+#submitMessageEdit{
+    margin-right: 10px;
+    margin-left: 20px;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-image: url(img/check.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    border: black 1px solid;
+    border-radius: 10px;
+    background-color: rgb(115, 255, 131);
+}
+
+/*Button to submit changes of message, on hover*/
+#submitMessageEdit:hover{
+    background-color: rgb(47, 188, 63);
+}
+
+/*Button to cancel message editing*/
+#cancelSubmitMessageEdit{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-image: url(img/x.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    border: black 1px solid;
+    border-radius: 10px;
+    background-color: rgb(255, 115, 115);
+}
+
+/*Button to cancel message editing, on hover*/
+#cancelSubmitMessageEdit:hover{
+    background-color: rgb(188, 47, 47);
+}
+
+/*Container that contains counter for how many users are online*/
+.users_online_container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 165px;
+    height: 70px;
+    text-align: center;
+    margin-right: 16px;
+    margin-top: 55px;
+    color: #88ffa7;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    font-size: 20px;
+}
+
+/*User icon in the upper right corner*/
+.users_online_container img{
+    position: relative;
+    top: 20px;
+}
+
+/*Container with user icon image and counter*/
+.users_online{
+    width: 70px;
+    height: 70px;
+    position: relative;
+    float: right;
+}
+
+/*Container that contains list for users online*/
+.users_online_list{
+    margin-top: 40px;
+    margin-right: 40px;
+    width: 150px;
+    position: relative;
+    top: 30px;
+    height: 200px;
+    border: 2px solid black;
+    float: left;
+    color: black;
+    display: none;
+    background-color: white;
+}
+
+/*p tags in users online list*/
+.users_online_list p{
+    font-size: 15px;
+}
+
+/*Container that keeps text inside div*/
+.users_online_text_container{
+    width: 140px;
+    height: 200px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+}
+
+/*Shows list of users online on hover of user icon*/
+.users_online_container:hover > .users_online_list {
+    display: block;
+}
+
+/*Button for replying to message*/
+#replyMessage{
+    position: relative;
+    float: right;
+    top: 0;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url(img/reply.svg);
+    background-position: center;
+    opacity: 0.3;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    left: 15px;
+}
+
+/*Button for replying to message, on hover*/
+#replyMessage:hover{
+    opacity: 1;
+}
+
+/*Container that contains info abount who youre replying to*/
+.replyingto_container{
+    position: absolute;
+    bottom: 0;
+    margin: 100px;
+    border: black solid 1px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    color: black;
+    z-index: 999;
+    margin-left: 170px;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: none;
+    max-width: 500px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+}
+
+/*button to cancel replying of message*/
+#cancel_reply{
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url(img/x.svg);
+    background-position: center;
+    opacity: 0.3;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    float: right;
+    position: relative;
+    left: 10px;
+}
+
+/*button to cancel replying of message, on hover*/
+#cancel_reply:hover{
+    opacity: 1;
+}
+
+/*Button in reply messages that automatically scroll to referenced message*/
+#messageReplyLink{
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+/*Containers inside automatic scroll button*/
+.reply_link_half_container{
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/*arrow symbol inside automatic scroll button*/
+.reply_link_username_arrow{
+    height: 15px;
+    width: 15px;
+    opacity: 0.5;
+}
+
+/*Profile picture inside automatic scroll button*/
+.reply_link_username_profilepic{
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 5px;
+}
+
+/*Username inside automatic scroll button*/
+.reply_link_username{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 600;
+    height: 25px;
+    font-size: 13px;
+    margin-left: 7px;
+    line-height: 7px;
+}
+
+/*Message inside automatic scroll button*/
+.reply_link_message{
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    margin-left: 53px;
+    position: relative;
+    bottom: 3px;
+}
+
+/*Specific styling for Firefox*/
+@-moz-document url-prefix() {
+    #addImageButton{
+        position: relative;
+        top: auto;
+    }
+}
