@@ -323,25 +323,37 @@ echo "<style>#sidebarUsername{color:" . $row['username_color'] . "}</style>"
         table();
         }
 
-        //Scrolls to a specific message and highlights it for a time
-        function messageScroll(messageID) {
-            var isMessageLoaded = setInterval(function(){
-                if(document.getElementById(messageID) == null){
-                    loadMessagesPHP();
+        //Scrolls to and highlights message
+        function jumpToMessage(messageID){
+            var i=0;
+            document.getElementById(messageID).scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+            var highlighInterval = setInterval(function(){
+                i++;
+                if (i<45){
+                    document.getElementById(messageID).style.backgroundColor = "#7ED0FF";
                 } else {
-                    clearInterval(isMessageLoaded);
-                    var i=0;
-                    document.getElementById(messageID).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-                    var highlighInterval = setInterval(function(){
-                        i++;
-                        if (i<45){
-                            document.getElementById(messageID).style.backgroundColor = "#7ED0FF";
-                        } else {
-                            clearInterval(highlighInterval);
-                        }
-                    }, 25);
+                    clearInterval(highlighInterval);
                 }
-            }, 100);
+            }, 25);
+        }
+
+        //Loads in message and scrolls to it
+        function messageScroll(messageID) {
+            if (document.getElementById(messageID) == null) {
+                var isMessageLoaded = setInterval(function(){
+                    if(document.getElementById(messageID) == null){
+                        loadMessagesPHP();
+                        document.body.style.cursor = "wait";
+                    } else {
+                        document.body.style.cursor = "default";
+                        clearInterval(isMessageLoaded);
+                        document.getElementById(messageID).scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+                        jumpToMessage(messageID);
+                    }
+                }, 200);
+            } else {
+                jumpToMessage(messageID);
+            }
         };
     </script>
 </body>

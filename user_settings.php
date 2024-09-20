@@ -1,5 +1,8 @@
 <?php
 // Connects to mysql server and specifies which database to use
+
+use PhpMyAdmin\Dbal\Warning;
+
 $username = "";
 $showwarning = 0;
 $warning = "";
@@ -17,42 +20,49 @@ if(!empty($_SESSION['username'])){
 //Changes username color
 if(!empty($_POST['submitcolor'])){
     $newcolor = $_POST['newcolor'];
-    $sql = "UPDATE users SET username_color='$newcolor' WHERE username='$username'";
-    $conn->query($sql);
-    $sql = "UPDATE messages SET username_color='$newcolor' WHERE username='$username'";
-    $conn->query($sql);
+    if ($newcolor == "#ffffff"){
+        $warning = "Cannot have white username.";
+        $showwarning = 1;
+    } else {
+        $sql = "UPDATE users SET username_color='$newcolor' WHERE username='$username'";
+        $conn->query($sql);
+        $sql = "UPDATE messages SET username_color='$newcolor' WHERE username='$username'";
+        $conn->query($sql);
+    }
 };
 
 //Changes profileimage
-if(!empty($_POST['submit'])){
+if(!empty($_POST['submitimage'])){
     $file_name = $_FILES['image']['name'];
-    $tempname = $_FILES['image']['tmp_name'];
-    $file_type = $_FILES['image']['type'];
-    $folder = 'profile_images/'.$file_name;
-    $allowed = array("image/jpeg", "image/png", "image/webp");
-    if (!in_array($file_type, $allowed)) {
-        $warning = "File type not supported. Only JPEG, PNG and WebP supported!";
-        $showwarning = 1;
-    } else {
-        //Changes name of file if file already exists
-        if (file_exists($folder)){
-            $temp = explode(".", $file_name);
-            $newfilename = round(microtime(true)) . '.' . end($temp);
-            $folder = 'profile_images/'.$newfilename;
-            $file_name = $newfilename;
-        };
-        if(move_uploaded_file($tempname, $folder)){
-            $sql = "UPDATE users SET profile_image='$file_name' WHERE username='$username'";
-            $result = $conn->query($sql);
-        } else {
-            $warning = "Something went wrong.";
+    if ($file_name != NULL){
+        $tempname = $_FILES['image']['tmp_name'];
+        $file_type = $_FILES['image']['type'];
+        $folder = 'profile_images/'.$file_name;
+        $allowed = array("image/jpeg", "image/png", "image/webp");
+        if (!in_array($file_type, $allowed)) {
+            $warning = "File type not supported. Only JPEG, PNG and WebP supported!";
             $showwarning = 1;
-        };
+        } else {
+            //Changes name of file if file already exists
+            if (file_exists($folder)){
+                $temp = explode(".", $file_name);
+                $newfilename = round(microtime(true)) . '.' . end($temp);
+                $folder = 'profile_images/'.$newfilename;
+                $file_name = $newfilename;
+            };
+            if(move_uploaded_file($tempname, $folder)){
+                $sql = "UPDATE users SET profile_image='$file_name' WHERE username='$username'";
+                $result = $conn->query($sql);
+            } else {
+                $warning = "Something went wrong.";
+                $showwarning = 1;
+            };
+        }
     }
 };
 
 //Changes username
-if(!empty($_POST['submitusername'])){
+if(!empty($_POST['newusername'])){
     $newusername = $_POST['newusername'];
     $sql = "SELECT username FROM users WHERE username='$newusername'";
     $result = $conn->query($sql);
@@ -65,8 +75,12 @@ if(!empty($_POST['submitusername'])){
         $_SESSION['username'] = $newusername;
         $username = $newusername;
     } else {
-        $warning = "Username taken!";
-        $viswarning = 1;
+        if ($row['username'] == $username){
+            $warning = "This is already your username.";
+        } else {
+            $warning = "Username taken!";
+        }
+        $showwarning = 1;
     };
 };
 
@@ -115,11 +129,11 @@ echo "<style>#settingsUsername{color:" . $row['username_color'] . "}</style>"
                     <div class="preview_img_container">
                         <img id="preview_img" src="#"/>
                     </div>
-                    <input type="submit" id="profileImageSettingsSubmit" value="Save" name="submit">
+                    <input type="submit" id="profileImageSettingsSubmit" value="Save" name="submitimage">
                 </div>
                 <button type="button" id="settings_change_username">Change username</button>
                 <div id="changeUsernameMenu">
-                    <input type="text" name="newusername" placeholder="Type in new username" maxlength="30">
+                    <input type="text" name="newusername" placeholder="Type in new username" maxlength="30" pattern=".*\S+.*">
                     <input type="submit" value="Save" name="submitusername">
                 </div>
                 <button type="button" id="settings_change_color">Change username color</button>

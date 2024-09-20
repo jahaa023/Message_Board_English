@@ -56,15 +56,28 @@ while ($row = mysqli_fetch_array($result)) {
             $result4 = $conn->query($sql4);
             $row4 = mysqli_fetch_array($result4);
 
+            //If message contains image, show "image attached"
+            if ($row3['file'] != NULL) {
+                $replyFileAttached = "<div class='reply_image_attached'><img src='img/image_icon.svg'>Image attached</div>";
+            } else {
+                $replyFileAttached = "";
+            };
+
+            //If message is empty dont show it
+            if (strlen(trim($row3['message'])) == 0){
+                $replyShowMessage = "";
+            } else {
+                $replyShowMessage = "<div class='reply_link_half_container'><p class='reply_link_message'>" . $row3['message'] . "</p></div>";
+            };
+
             $replyLink = "<button id='messageReplyLink' onclick='messageScroll(" . $row['reply'] . ")'>
                 <div class='reply_link_half_container'>
                     <img src='img/reply.svg' class='reply_link_username_arrow'>
                     <div class='reply_link_username_profilepic' style='background-image: url(profile_images/" . $row4['profile_image'] . ");'></div>
                     <p class='reply_link_username' style='color:" . $row3['username_color'] . ";'>" . $row4['username'] . "</p>
                 </div>
-                <div class='reply_link_half_container'>
-                    <p class='reply_link_message'>" . $row3['message'] . "</p>
-                </div>
+                $replyShowMessage
+                $replyFileAttached
             </button>";
         } else {
             //If the replied to message is deleted, show a message sent by "Deleted message"

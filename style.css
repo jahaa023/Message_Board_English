@@ -628,8 +628,9 @@ body{
 /*Warning that pops up if something goes wrong on user settings*/
 .settings_warning{
     display: none;
-    width: 330px;
-    height: 100px;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
     border: solid 1px rgb(77, 77, 77);
     background-color: rgba(255, 89, 89, 0.353);
     text-align: center;
@@ -991,6 +992,20 @@ body{
     margin-left: 53px;
     position: relative;
     bottom: 3px;
+}
+
+/*Styling for if image is attached to message in reply link*/
+.reply_image_attached{
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    width: 100%;
+    height: 20px;
+    margin-left: 53px;
+    font-family: "indivisible-variable", sans-serif;
+    font-variation-settings: "wght" 400;
+    line-height: 20px;
+    opacity: 0.5;
 }
 
 /*Specific styling for Firefox*/
