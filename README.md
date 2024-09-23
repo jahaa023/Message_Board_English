@@ -6,3 +6,4 @@ Requirements for running website:
 - These folders: user_images, profile_images, groupchat_images and groupchat_background_images.
 - You also need the img folder with all the files inside
 - conn.php needs to have the correct username and password for the MySQL server
+- php.ini needs to have the mysqli extension enabled
