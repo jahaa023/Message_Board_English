@@ -13,6 +13,7 @@ $conn->select_db("board");
 //If you are not logged in, you get redirected
 if(!empty($_SESSION['username'])){
     $username = $_SESSION['username'];
+    $user_id = $_SESSION['user_id'];
 } else {
     header("Location: index.php");
 };
@@ -24,9 +25,7 @@ if(!empty($_POST['submitcolor'])){
         $warning = "Cannot have white username.";
         $showwarning = 1;
     } else {
-        $sql = "UPDATE users SET username_color='$newcolor' WHERE username='$username'";
-        $conn->query($sql);
-        $sql = "UPDATE messages SET username_color='$newcolor' WHERE username='$username'";
+        $sql = "UPDATE users SET username_color='$newcolor' WHERE user_id='$user_id'";
         $conn->query($sql);
     }
 };
@@ -51,7 +50,7 @@ if(!empty($_POST['submitimage'])){
                 $file_name = $newfilename;
             };
             if(move_uploaded_file($tempname, $folder)){
-                $sql = "UPDATE users SET profile_image='$file_name' WHERE username='$username'";
+                $sql = "UPDATE users SET profile_image='$file_name' WHERE user_id='$user_id'";
                 $result = $conn->query($sql);
             } else {
                 $warning = "Something went wrong.";
@@ -68,9 +67,7 @@ if(!empty($_POST['newusername'])){
     $result = $conn->query($sql);
     $row = mysqli_fetch_array($result);
     if (!$row){
-        $sql = "UPDATE users SET username='$newusername' WHERE username='$username'";
-        $conn->query($sql);
-        $sql = "UPDATE messages SET username='$newusername' WHERE username='$username'";
+        $sql = "UPDATE users SET username='$newusername' WHERE user_id='$user_id'";
         $conn->query($sql);
         $_SESSION['username'] = $newusername;
         $username = $newusername;
@@ -85,13 +82,13 @@ if(!empty($_POST['newusername'])){
 };
 
 //Loads in profile picture to user who is logged in
-$sql = "SELECT profile_image FROM users WHERE username='$username'";
+$sql = "SELECT profile_image FROM users WHERE user_id='$user_id'";
 $result = $conn->query($sql);
 $row = mysqli_fetch_array($result);
 $profile_image = $row['profile_image'];
 
 //Loads in username color on user who is logged in
-$sql = "SELECT username_color FROM users WHERE username='$username'";
+$sql = "SELECT username_color FROM users WHERE user_id='$user_id'";
 $result = $conn->query($sql);
 $row = mysqli_fetch_array($result);
 echo "<style>#settingsUsername{color:" . $row['username_color'] . "}</style>"

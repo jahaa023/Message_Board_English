@@ -20,11 +20,12 @@ if(!empty($_POST['username'])) {
         $loginwarning = "Username does not exist!";
         $showwarning = 1;
     } else { // If the user exists, compare password hash
-        $sql = "SELECT password FROM users WHERE username='$username'";
+        $sql = "SELECT * FROM users WHERE username='$username'";
         $result = $conn->query($sql);
         $row = mysqli_fetch_array($result);
         if (password_verify($password, $row['password'])) {
             $_SESSION['username'] = $username;
+            $_SESSION['user_id'] = $row['user_id'];
             header("Location: board.php");
         } else {
             $loginwarning = "Password is wrong!";

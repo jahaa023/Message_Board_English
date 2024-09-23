@@ -7,7 +7,7 @@ require 'validate.php';
 $conn->select_db("board");
 
 //Gets specified amount of messages from database
-$sql = "SELECT * FROM `messages` ORDER BY `messages`.`message_id` DESC LIMIT " . $_SESSION['message_amount'];
+$sql = "SELECT * FROM " . $_SESSION['current_table'] . " ORDER BY " . $_SESSION['current_table'] . ".`message_id` DESC LIMIT " . $_SESSION['message_amount'];
 $result = $conn->query($sql);
 
 //Gets the current time in Oslo
@@ -16,8 +16,8 @@ $date = $datetime->format( 'Y-m-d' );
 $replyButton = "";
 
 while ($row = mysqli_fetch_array($result)) {
-    //Retrieves the profile image for each message
-    $sql2 = "SELECT profile_image FROM users WHERE username='" . $row['username'] . "'";
+    //Retrieves the profile image and username color for each message
+    $sql2 = "SELECT * FROM users WHERE user_id='" . $row['user_id'] . "'";
     $result2 = $conn->query($sql2);
     $row2 = mysqli_fetch_array($result2);
 
@@ -36,7 +36,7 @@ while ($row = mysqli_fetch_array($result)) {
     };
 
     //Adds delete and edit buttons to messages sent by logged in user
-    if ($row['username'] == $_SESSION['username']) {
+    if ($row['user_id'] == $_SESSION['user_id']) {
         $editButton = "<button form='actionForm' id='editMessageButton' name='edit_message' value='" . $row['message_id'] . "'></button>";
         $deleteButton = "<button form='actionForm' id='deleteMessageButton' name='delete_message' value='" . $row['message_id'] . "'></button>";
     } else {
@@ -47,12 +47,12 @@ while ($row = mysqli_fetch_array($result)) {
     $replyLink = "";
     if($row['reply'] != 0) {
         //If the message is a reply to a diffrent message, add a link to that message
-        $sql3 = "SELECT * FROM messages WHERE message_id='" . $row['reply'] . "'";
+        $sql3 = "SELECT * FROM " . $_SESSION['current_table'] . " WHERE message_id='" . $row['reply'] . "'";
         $result3 = $conn->query($sql3);
         if($result3->num_rows == 1) {
             $row3 = mysqli_fetch_array($result3);
 
-            $sql4 = "SELECT * FROM users WHERE username='" . $row3['username'] . "'";
+            $sql4 = "SELECT * FROM users WHERE user_id='" . $row3['user_id'] . "'";
             $result4 = $conn->query($sql4);
             $row4 = mysqli_fetch_array($result4);
 
@@ -74,7 +74,7 @@ while ($row = mysqli_fetch_array($result)) {
                 <div class='reply_link_half_container'>
                     <img src='img/reply.svg' class='reply_link_username_arrow'>
                     <div class='reply_link_username_profilepic' style='background-image: url(profile_images/" . $row4['profile_image'] . ");'></div>
-                    <p class='reply_link_username' style='color:" . $row3['username_color'] . ";'>" . $row4['username'] . "</p>
+                    <p class='reply_link_username' style='color:" . $row4['username_color'] . ";'>" . $row4['username'] . "</p>
                 </div>
                 $replyShowMessage
                 $replyFileAttached
@@ -106,18 +106,18 @@ while ($row = mysqli_fetch_array($result)) {
     $textWithLinks = preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank" rel="nofollow">$1</a>', $text);
     $message = $textWithLinks;
     
-    echo "<div class='message' id='" . $row['message_id'] . "' style='border: 1px solid " . $row['username_color'] . "'>
+    echo "<div class='message' id='" . $row['message_id'] . "' style='border: 1px solid " . $row2['username_color'] . "'>
         <button form='actionForm' id='replyMessage' name='reply_message' value='" . $row['message_id'] . "'></button>
         <div id='message_username_container'>
             <div id='message_profile_image' style='background-image: url(profile_images/" . $row2['profile_image'] . ");'></div>
-            <p id='message_username' style='color:" . $row['username_color'] . "'>" . validate($row['username']) . "</p>
+            <p id='message_username' style='color:" . $row2['username_color'] . "'>" . $row2['username'] . "</p>
             <p id='message_timestamp'>" . $row['time'] . " - " . $datemessage . "</p>
         </div>
         $replyLink
         <p id='message_content'>" . $message . "</p>" . $messagefile . $deleteButton . $editButton . "</div>";
 };
 //Checks if there are more messages in the database than the amount that is loaded in. If there is, add a button to load more messages in.
-$sql = "SELECT COUNT(*) c FROM messages";
+$sql = "SELECT COUNT(*) c FROM " . $_SESSION['current_table'];
 $result = $conn->query($sql);
 $row = mysqli_fetch_array($result);
 if($row['c'] > $_SESSION['message_amount']){

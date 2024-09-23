@@ -9,10 +9,10 @@ if(!isset($_SESSION['notifications'])){
 }
 
 $i = 0;
-$sql = "SELECT * FROM `messages` ORDER BY `messages`.`message_id`";
+$sql = "SELECT * FROM " . $_SESSION['current_table'] . " ORDER BY " . $_SESSION['current_table'] . ".`message_id`";
 $result = $conn->query($sql);
 while($row = mysqli_fetch_array($result)){
-    if ($row['notif_time'] > $_SESSION['notifications'] and $row['username'] != $_SESSION['username']) {
+    if ($row['notif_time'] > $_SESSION['notifications'] and $row['user_id'] != $_SESSION['user_id']) {
         $i++;
     };
 };
